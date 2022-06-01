@@ -10,13 +10,25 @@ class WeatherController < ApplicationController
     @uri = URI(@url)
     @response = Net::HTTP.get(@uri)
     @output = JSON.parse(@response)
-    # @weather.push(@output)
 
-    render json: @output
-    # render json: @output.as_json(only: ["current", "temp", "weather", "main", "description", "daily", "min", "max", "humidity", "wind_speed", "pop"])
+    # Getting the first day out of the seven returned by openweathermap
+    @current_day = @output['daily'].first
 
-    # respond_to do |format|
-    #   format.json { render json: @weather.as_json }
-    # end
+    # Returning daily weather forecast
+    @daily_weather = {
+      lat: @output['lat'],
+      lon: @output['lon'],
+      current_temp: @output['current']['temp'],
+      weather: @output['current']['weather'].first['main'],
+      weather_description: @output['current']['weather'].first['description'],
+      feels_like: @output['current']['feels_like'],
+      wind_speed: @output['current']['wind_speed'],
+      humidity: @output ['current']['humidity'],
+      min_temp: @current_day['temp']['min'],
+      max_temp: @current_day['temp']['max'],
+      rain_chance: @current_day['pop']
+    }
+
+    render json: @daily_weather
   end
 end
