@@ -1,5 +1,7 @@
 class WeatherController < ApplicationController
-  def location
+  include EventsHelper
+
+  def index
     lat = params[:lat]
     lon = params[:lon]
 
@@ -20,7 +22,7 @@ class WeatherController < ApplicationController
 
     # Getting the first day out of the seven returned by openweathermap
     current_day = output['daily'].first
-    
+
     min_temp = current_day['temp']['min']
     max_temp = current_day['temp']['max']
 
@@ -37,19 +39,7 @@ class WeatherController < ApplicationController
       min_temp: min_temp,
       max_temp: max_temp,
       rain_chance: current_day['pop'] * 100,
-      recommended_clothing: if min_temp <= 5 && max_temp <= 10
-                              'Wear warm clothes'
-                            elsif min_temp <= 10 && max_temp <= 15
-                              'Wear a jacket and a thick sweater'
-                            elsif min_temp <= 10 && max_temp >= 15
-                              'Wear a jacket and a light sweater'
-                            elsif min_temp >= 10 && max_temp <= 20
-                              'Take a sweater'
-                            elsif min_temp <= 20 && max_temp >= 20
-                              'Wear light clothes and maybe a sweater'
-                            elsif min_temp >= 20 && max_temp >= 20
-                              'Wear light clothes'
-                            end
+      recommended_clothing: compute_clothes(min_temp, max_temp)
     }
 
     render json: daily_weather
