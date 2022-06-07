@@ -25,6 +25,7 @@ class WeatherController < ApplicationController
 
     min_temp = current_day['temp']['min']
     max_temp = current_day['temp']['max']
+    rain_chance = current_day['pop'] * 100
 
     # Returning daily weather forecast
     daily_weather = {
@@ -38,8 +39,9 @@ class WeatherController < ApplicationController
       humidity: output ['current']['humidity'],
       min_temp: min_temp,
       max_temp: max_temp,
-      rain_chance: current_day['pop'] * 100,
-      recommended_clothing: compute_clothes(min_temp, max_temp)
+      rain_chance: rain_chance,
+      recommended_clothing: compute_clothes(min_temp, max_temp),
+      suggestion: rain_clothes(rain_chance)
     }
 
     render json: daily_weather
