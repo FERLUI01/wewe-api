@@ -1,4 +1,4 @@
-class WeatherController < ApplicationController
+class Api::WeatherController < ApplicationController
   include EventsHelper
 
   def index
