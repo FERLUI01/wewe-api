@@ -11,7 +11,7 @@ class Api::WeatherController < ApplicationController
     require 'net/http'
     require 'json'
 
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&units=metric&exclude=minutely,hourly,alerts&appid=ecd1d928cecc524245b088ed57bc6b99"
+    url = "https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&units=metric&exclude=minutely,hourly,alerts&appid=#{ENV['API_KEY']}"
     uri = URI(url)
     response = Net::HTTP.get_response(uri)
 
