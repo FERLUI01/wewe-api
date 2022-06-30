@@ -11,11 +11,12 @@ class Api::WeatherController < ApplicationController
     require 'net/http'
     require 'json'
 
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&units=metric&exclude=minutely,hourly,alerts&appid=ecd1d928cecc524245b088ed57bc6b99"
+    url = "https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&units=metric&exclude=minutely,hourly,alerts&appid=#{ENV['API_KEY']}"
     uri = URI(url)
     response = Net::HTTP.get_response(uri)
 
     # Validate server response
+    return render json: { error: response.message }, status: response.code if response.is_a?(Net::HTTPClientError)
     return render json: { error: 'api call failed' }, status: 500 unless response.is_a?(Net::HTTPSuccess)
 
     output = JSON.parse(response.body)
@@ -39,7 +40,7 @@ class Api::WeatherController < ApplicationController
       humidity: output ['current']['humidity'],
       min_temp: min_temp,
       max_temp: max_temp,
-      rain_chance: rain_chance,
+      rain_chance: rain_chance.to_i,
       recommended_clothing: compute_clothes(min_temp, max_temp),
       suggestion: rain_clothes(rain_chance)
     }
