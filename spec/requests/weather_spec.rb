@@ -10,7 +10,6 @@ RSpec.describe "Api::WeatherController", type: :request do
             it "returns daily weather" do
                 res = JSON.parse(response.body)
                 expect(res).not_to be_empty
-                # Current temperature
                 expect(res.keys).to include(
                     'current_temp',
                     'min_temp',
@@ -21,17 +20,11 @@ RSpec.describe "Api::WeatherController", type: :request do
                     'humidity',
                 )
                 expect(res['current_temp']).to be_a(Float)
-                # Min
                 expect(res['min_temp']).to be_a(Float)
-                # Max
                 expect(res['max_temp']).to be_a(Float)
-                # Recommended Clothing
                 expect(res['recommended_clothing']).to be_a(String)
-                # Wind
                 expect(res['wind_speed']).to be_a(Float)
-                # Rain
                 expect(res['rain_chance']).to be_an(Integer)
-                # Humidity
                 expect(res['humidity']).to be_an(Integer)
             end  
         end
