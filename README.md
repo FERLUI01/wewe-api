@@ -9,26 +9,28 @@ This solution is making use of an external API to retrieve the current meteorolo
 
 # Technologies 💻
 
-* *Ruby*: 3.0.3
-* *Rails*: 6.1.6
+- **Ruby**: 3.0.3
+- **Rails**: 6.1.6
 
 # API 🌍
 
-## *GET* /api/weather
+## **GET** _/api/weather_
 
 ### Query Parameters (required):
+
 | Params | Description          | Type  |
-|--------|----------------------|-------|
+| ------ | -------------------- | ----- |
 | lat    | Latitude in degrees  | float |
 | lon    | Longitude in degrees | float |
 
 ### Response Body (examples):
 
-#### *HTTP* 200:
+#### **HTTP** 200:
 
+```
 {
-  "lat": 50.9375,               // in celsius
-  "lon": 6.9603,                // in celsius
+  "lat": 50.9375,               // in degrees
+  "lon": 6.9603,                // in degrees
   "current_temp": 15.47,        // in celsius
   "weather": "Clear",
   "weather_description": "clear sky",
@@ -41,29 +43,41 @@ This solution is making use of an external API to retrieve the current meteorolo
   "recommended_clothing": "Wear light clothes and maybe a sweater",
   "suggestion": "Take your rain jacket and umbrella"
 }
+```
 
-#### *HTTP* 4xx/500:
+#### **HTTP** 4xx/500:
 
+```
 {
   "error": "client/server error message"
 }
+```
 
 # How to run ⚡️
+
 To run this app please execute the following commands in the project's root:
 
 1. install gem dependencies:
 
+```
 bundle install
+```
 
 2. run rails server in port 3000:
 
+```
 rails s
+```
 
 ## Tests 🧪
+
 To run all the tests:
 
+```
 rspec
+```
 
 # Todo(s) 🔧
-* Create a UI to display the weather info
-* Extend the API: e.g. get the hourly day/week forecast
+
+- Create a UI to display the weather info
+- Extend the API: e.g. get the hourly day/week forecast
