@@ -14,8 +14,8 @@ RSpec.describe EventsHelper, type:  :helper do
             expect(compute_clothes(min_temp, max_temp)).to eq('Wear a jacket and a thick sweater')
         end   
         it 'returns warm clothes as suggestion' do
-            min_temp = 9   
-            max_temp = 18
+            min_temp = 11   
+            max_temp = 16
             expect(compute_clothes(min_temp, max_temp)).to eq('Wear a jacket and a light sweater')
         end   
         it 'returns light clothing suggestion' do

@@ -5,7 +5,7 @@ module EventsHelper
       'Wear warm clothes'
     elsif min_temp <= 10 && max_temp <= 15
       'Wear a jacket and a thick sweater'
-    elsif min_temp <= 10 && max_temp < 20
+    elsif min_temp < 20 && max_temp < 20
       'Wear a jacket and a light sweater'
     elsif min_temp < 20 && max_temp >= 20
       'Wear light clothes and maybe a sweater'
