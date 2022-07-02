@@ -27,17 +27,17 @@ This solution is making use of an external API to retrieve the current meteorolo
 #### *HTTP* 200:
 
 {
-  "lat": 50.9375,                  in celsius
-  "lon": 6.9603,                   in celsius
-  "current_temp": 15.47,           in celsius
+  "lat": 50.9375,                  in celsius,
+  "lon": 6.9603,                   in celsius,
+  "current_temp": 15.47,           in celsius,
   "weather": "Clear",
   "weather_description": "clear sky",
-  "feels_like": 14.98,             in celsius
-  "wind_speed": 0.51,              in m/s
-  "humidity": 73,                  percentage
-  "min_temp": 12.7,                in celsius
-  "max_temp": 21.5,                in celsius
-  "rain_chance": 100,              percentage
+  "feels_like": 14.98,             in celsius,
+  "wind_speed": 0.51,              in m/s,
+  "humidity": 73,                  percentage,
+  "min_temp": 12.7,                in celsius,
+  "max_temp": 21.5,                in celsius,
+  "rain_chance": 100,              percentage,
   "recommended_clothing": "Wear light clothes and maybe a sweater",
   "suggestion": "Take your rain jacket and umbrella"
 }
